@@ -1,4 +1,6 @@
-from pika import ConnectionParameters
+import json
+
+from pika import BlockingConnection, ConnectionParameters
 
 
 BROKER_HOST = "localhost"
@@ -12,7 +14,15 @@ connection_params = ConnectionParameters(
 
 
 def main():
-    pass
+    with BlockingConnection(connection_params) as connection:
+        with connection.channel() as channel:
+            channel.queue_declare(queue="messages", durable=False)
+            
+            channel.basic_publish(
+                exchange="",
+                routing_key="messages",
+                body=json.dumps({"message": "Hello world!"})
+            )
 
 
 if __name__ == '__main__':

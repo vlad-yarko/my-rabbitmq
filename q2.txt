@@ -1,0 +1,1 @@
+Now i want that you just like showed everything that i know on the sync pika in aio-pika. Like show me what differs between them, maybe some method or attribute names etc, that i need to put await is not a difference, ok?)))

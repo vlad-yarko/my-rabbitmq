@@ -1,0 +1,1 @@
+Do i understand well that one queue can be bound to a lot of exhanges, and one exchange to a lot of queues? And what is delivery_tag? And did not get about RPC

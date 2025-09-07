@@ -1,0 +1,1 @@
+Do i understand well that aio-pika does not have channels?

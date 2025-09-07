@@ -1,4 +1,5 @@
 import json
+import time
 
 from pika import BlockingConnection, ConnectionParameters
 
@@ -16,14 +17,19 @@ connection_params = ConnectionParameters(
 def callback(channel, method, properties, body):
     # Processing a message
     print(f"Message: {json.loads(body.decode('utf-8'))}")
+    time.sleep(1)
+    
+    channel.basic_nack(delivery_tag=method.delivery_tag, requeue=False)
     # Removing the message after processing
-    channel.basic_ack(delivery_tag=method.delivery_tag)
+    # channel.basic_ack(delivery_tag=method.delivery_tag)
 
 
 def main():
     with BlockingConnection(connection_params) as connection:
         with connection.channel() as channel:
-            channel.queue_declare(queue="messages", durable=False)
+            channel.basic_qos(prefetch_count=1)
+            
+            # channel.queue_declare(queue="messages", durable=True)
             
             channel.basic_consume(
                 queue="messages",

@@ -1,0 +1,1 @@
+You did not show a lot of thing in aio pika, like dlx, binding, a lot of another things, i want to know AAAAALLLL. You did not explain about BasicProperties, how to do them here. Arguments for dlx, how to delete something, queue, exchange, close something
